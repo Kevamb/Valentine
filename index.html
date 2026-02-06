@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Meliza Markaj, Will you be my Valentine ?</title>
+
+    <style>
+        body {
+            text-align: center;
+			background-color: pink;
+        }
+
+        .center-image {
+            margin-top: 20px;
+        }
+
+        .conteneur-centre {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh;
+            gap: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Image cachée au départ */
+        #image-valentine {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 192, 203, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Acceptes-tu d'être ma Valentine cette année encore ?</h1>
+
+    <div class="center-image">
+        <img src="sonic-freaky.gif" alt="Mon gif préféré" width="400">
+    </div>
+
+    <div class="conteneur-centre">
+        <button id="oui">OUI</button>
+        <button onclick="window.location.reload();">NON</button>
+    </div>
+
+    <!-- Image qui apparaît après le OUI -->
+    <div id="image-valentine">
+        <img src="photofunky.gif" alt="Valentine 💖" width="800">
+    </div>
+
+    <script>
+        const boutonOui = document.getElementById("oui");
+        const imageValentine = document.getElementById("image-valentine");
+
+        // Gestion de la taille du bouton (session uniquement)
+        let size = sessionStorage.getItem("ouiSize");
+        size = size ? parseInt(size) + 10 : 16;
+        boutonOui.style.fontSize = size + "px";
+        sessionStorage.setItem("ouiSize", size);
+
+        // Quand on clique sur OUI → afficher l'image
+        boutonOui.addEventListener("click", () => {
+            imageValentine.style.display = "block";
+        });
+    </script>
+</body>
+</html>
